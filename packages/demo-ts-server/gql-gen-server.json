@@ -1,0 +1,7 @@
+{
+  "generatorConfig": {
+    "noNamespaces": true,
+    "resolvers": true,
+    "prepend": ["export { Context } from \"../utils\";"]
+  }
+}

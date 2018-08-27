@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  # psql notes
+  # (install postgresql to get psql etc)
+  #
+  # console:
+  # PGPASSWORD=postgres psql -h 127.0.0.1 -U postgres dev
+  #
+  # run delta:
+  # PGPASSWORD=postgres psql -h 127.0.0.1 -U postgres -f deltas/initial.sql dev
+  #
+  # run obevo:
+  # /path/to/obevo-cli-6.6.0-dist/bin/deploy.sh DEPLOY -sourcePath deltas/ -env dev
+  #
+  postgres:
+    image: mdillon/postgis
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dev
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+volumes:
+  ? pgdata
+
+networks:
+  hostnet:
+    driver: bridge

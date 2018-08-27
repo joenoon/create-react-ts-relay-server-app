@@ -1,0 +1,12 @@
+<dbSystemConfig type="POSTGRESQL">
+
+  <schemas>
+    <schema name="public" />
+  </schemas>
+
+  <environments>
+    <dbEnvironment name="dev" type="DEV" cleanBuildAllowed="true" dbHost="localhost" dbPort="5432" dbServer="dev" defaultUserId="postgres" defaultPassword="postgres">
+    </dbEnvironment>
+
+  </environments>
+</dbSystemConfig>
