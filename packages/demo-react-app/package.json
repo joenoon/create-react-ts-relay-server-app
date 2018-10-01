@@ -37,7 +37,7 @@
     "react-scripts": "2.0.0-next.a671462c",
     "relay-compiler": "1.7.0-rc.1",
     "relay-compiler-language-typescript": "1.1.0",
-    "typescript": "3.0.1"
+    "typescript": "^3.1.1"
   },
   "browserslist": {
     "development": [
