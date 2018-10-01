@@ -8,24 +8,14 @@
  *   }
  */
 
-function findParentOfBabelLoader(rules) {
-  return rules.find(findBabelLoaderInRule);
-}
-
-function findBabelLoaderInRule(rule) {
-  if (rule.use) {
-    return rule.use.find(x => x.options && x.options.babelrc !== undefined && x.options.presets);
-  }
-}
-
 module.exports = function override(config, env) {
   config.resolve.extensions = ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx'];
 
   const oneOf = config.module.rules.find(x => x.oneOf).oneOf;
-  const parentOfBabelLoader = findParentOfBabelLoader(oneOf);
-  const babelLoader = findBabelLoaderInRule(parentOfBabelLoader);
 
-  parentOfBabelLoader.test = /\.(js|jsx|mjs|ts|tsx)$/;
+  const babelLoader = oneOf.find(x => x.include && x.loader.indexOf('babel-loader') > -1);
+
+  babelLoader.test = /\.(js|jsx|mjs|ts|tsx)$/;
   babelLoader.options.presets = [[require.resolve('babel-preset-react-app'), {flow: false}], [require.resolve('@babel/preset-typescript')]];
   babelLoader.options.plugins.push([
     require.resolve('babel-plugin-relay'),
@@ -42,6 +32,9 @@ module.exports = function override(config, env) {
     type: 'javascript/auto',
   });
   oneOf.push(lastOneOf);
+
+  // console.log(JSON.stringify(config, null, 2));
+  // throw 'exit'
 
   return config;
 };
