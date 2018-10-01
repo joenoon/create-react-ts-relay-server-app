@@ -2,7 +2,7 @@
   "name": "@joenoon/demo-react-app",
   "version": "1.0.0",
   "scripts": {
-    "dev": "react-app-rewired start",
+    "dev": "FORCE_COLOR=true react-app-rewired start | cat",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "relay": "relay-compiler --src src --schema ./ro.schema.graphql --watch false --watchman false --language typescript --artifactDirectory ./src/__generated__"
@@ -33,6 +33,7 @@
     "babel-plugin-relay": "1.7.0-rc.1",
     "cross-env": "^5.2.0",
     "graphql-compiler": "1.7.0-rc.1",
+    "http-proxy-middleware": "^0.19.0",
     "react-app-rewired": "^1.6.2",
     "react-scripts": "2.0.2",
     "relay-compiler": "1.7.0-rc.1",
